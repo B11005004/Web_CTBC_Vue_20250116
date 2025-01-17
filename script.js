@@ -18,6 +18,9 @@ const app = Vue.createApp({
             pointX:0,pointY:0,
             inputText:"預設文字",
             toDoList:[],addtoDo:"",
+            isCheck:false,
+            clickPoint:0,
+
         }
     },
     // Methods方法（函式區）
@@ -38,8 +41,37 @@ const app = Vue.createApp({
         },
         addtoDoList(){
             this.toDoList.push(this.addtoDo);
+        },
+        updateClickPoint(e){    //九、更新座標方法
+            this.clickPoint=e.x;
+        },
+        // 新的資料是第一個參數
+        newAndOldPoint(newX,oldX){
+            console.log("舊座標",oldX);
+            console.log("新座標",newX);
         }
+
+    },
+    // computed 計算處理
+    computed:{
+        // 需要監聽資料以及處理的內容
+        // 當資料內的 ischeck 被改變時會處理
+        checked(){
+            if(this.isCheck) return "已經勾選";
+            else return "尚未勾選";
+        }
+    },
+    // watch 監聽
+    watch:{
+        // 記錄新資料
+        // clickPoint(newPoint)會傳入新資料給newPoint
+        clickPoint(newPoint){
+            console.log(newPoint);
+        },
+        // 記錄新與舊資料(新資料會在第一個參數)
+        clickPoint:"newAndOldPoint"
     }
+
 });
 
 // 將app變數安裝到 #app 元素
