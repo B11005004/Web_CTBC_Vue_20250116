@@ -15,6 +15,29 @@ const app = Vue.createApp({
                 "HTML","CSS","JAVASCRIPT","jQuery","React","Angular","Git"
             ],
             count: 0,
+            pointX:0,pointY:0,
+            inputText:"預設文字",
+            toDoList:[],addtoDo:"",
+        }
+    },
+    // Methods方法（函式區）
+    methods:{
+        // 方法名稱(){},
+        test(){
+            console.log("我是測試方法");
+        },
+        methodEvent(e) {
+            // e 是事件對象的縮寫
+            console.log(e);          // 輸出整個事件
+            console.log(e.target);   // 輸出觸發事件的目標元素
+            console.log(e.x, e.y);   // 輸出事件發生時的鼠標座標
+        },
+        getPoint(e){
+            this.pointX=e.x;
+            this.pointY=e.y;
+        },
+        addtoDoList(){
+            this.toDoList.push(this.addtoDo);
         }
     }
 });
